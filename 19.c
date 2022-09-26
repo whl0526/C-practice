@@ -1,20 +1,25 @@
 #include<stdio.h>
-int GetSum(int a, int b);
+#include<string.h>
+
+typedef struct {
+ char name[10];
+ int age;
+ double height, weight;
+}Human;
+
 void main()
 {
- int a, b, sum;
- printf("main a의 주소 == %d\n", &a);
- printf("두 정수 a,b를 입력 : ");
- scanf_s("%d %d", &a, &b);
- sum = GetSum(a,b);
- printf("sum == %d\n", sum);
+ Human lee = { "이몽룡", 22, 174, 65 }, sung;
+ Human *pSung = &sung;
+ printf("sung의 이름을 입력:");
+ scanf_s("%s", pSung->name); // 포인터 변수는 ->, 배열은 .
+ printf("sung의 나이를 입력:");
+ scanf_s("%d", &pSung->age);
+ printf("sung의 키와 몸무게를 입력: ");
+ scanf_s("%lf%lf", &sung.weight, &sung.height);
+ printf("%s이는 %d세에 %s와 사귀었다.\n",
+  lee.name, lee.age, sung.name);
+ lee.age += 2;
+ printf("%s이는 %d세에 과거에 급제했다.\n", lee.name, lee.age);
 }
-
-int GetSum(int aCopy, int bCopy)
-{
- int sum;
- printf("GetSum a의 주소 == %d\n", &aCopy);
- sum = aCopy + bCopy;
- printf("함수 sum == %d\n", sum);
- return sum;
-}        
+ 
